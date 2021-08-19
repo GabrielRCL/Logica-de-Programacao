@@ -1,0 +1,56 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+    pincel.fillStyle = 'white';
+    pincel.fillRect(0, 0, 600, 400);
+
+    function desenhaCirculo(x, y, raio, cor) {
+
+        pincel.fillStyle = cor;
+        pincel.beginPath();
+        pincel.arc(x, y, raio, 0, 2 * Math.PI);
+        pincel.fill();
+    }
+
+    function limpaTela() {
+
+        pincel.clearRect(0, 0, 600, 400);
+    }
+	
+	
+	//Configurações:
+	raio = 20					//tamanho do raio inicial
+	raioMaximo = 30				//tamanho maximo do raio
+	raioMinimo = 20				//tamanho minimo do raio
+	posicaoX = 300				//posicao da bolinha no eixo X da tela
+	posicaoY = 200				//posicao da bolinha no eixo Y da tela
+	corDaBolinha = 'green'		//cor da bolinha
+	velocidade = 35				//velocidade com que o raio é crementado/decrementado
+	
+	
+	function atualizaTela() {
+		if (raio == raioMinimo) {
+			aumentaRaio = true
+			diminuiRaio = false
+		} else if (raio == raioMaximo) {
+			aumentaRaio = false
+			diminuiRaio = true
+		}
+	
+		if (aumentaRaio) {
+			limpaTela()
+			desenhaCirculo(posicaoX, posicaoY, raio, corDaBolinha)
+			raio++
+		} else if (diminuiRaio) {
+			limpaTela()
+			desenhaCirculo(posicaoX, posicaoY, raio, corDaBolinha)
+			raio--
+		}
+	}
+	
+	setInterval(atualizaTela, velocidade);
+
+</script>

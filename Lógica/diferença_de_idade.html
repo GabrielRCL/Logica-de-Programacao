@@ -1,0 +1,21 @@
+<meta charset="UTF-8">
+
+<script>
+	function pulaLinha() {
+		
+		document.write("<br>");
+		
+	}
+
+	function mostra(texto) { 
+	
+		document.write(texto);
+		pulaLinha()
+	}
+
+    var idadeDeUmCasalParaTerFilhos = 28;
+	var anoDeChegadaDosPortuguesesNoBrasil = 1500;
+	var anoAtual = 2020;
+	var totalDeGerações = (anoAtual - anoDeChegadaDosPortuguesesNoBrasil)/idadeDeUmCasalParaTerFilhos;
+	mostra("Se passaram " + (Math.round(totalDeGerações)) + " gerações."); 
+</script>

@@ -1,0 +1,96 @@
+<meta charset="UTF-8">
+
+<canvas width="600" height="400"></canvas>
+
+
+<script>
+
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+    var audio = document.querySelector('audio');
+
+    pincel.fillStyle = 'lightgray';
+    pincel.fillRect(0, 0, 600, 400);
+
+    function desenhaCirculo(x, y, raio, cor) {
+
+        pincel.fillStyle = cor;
+        pincel.beginPath();
+        pincel.arc(x, y, raio, 0, 2 * Math.PI);
+        pincel.fill();
+    }
+
+    function desenhaTriangulo(x1,x2,y,x3,y3,cor){
+
+        pincel.fillStyle = cor;
+        pincel.beginPath();
+        pincel.moveTo(x1,y);
+        pincel.lineTo(x2,y);
+        pincel.lineTo(x3,y3);
+        pincel.fill();
+
+    }
+
+    function limpaTela() {
+
+        pincel.clearRect(0, 0, 600, 400);
+    }
+
+    //CONFIGS
+    raio = 30;            //tamanho do raio da bolinha do coracao
+    trianguloX1 = 250    //posicao x1 triangulo
+    trianguloY = 155        //posicao Y triangulo
+    trianguloX2 = 350    //posicao x2 triangulo
+    //trianguloY2 = 155     //posicao y2 triangulo
+    trianguloX3 = 300    //posicao x3 triangulo
+    trianguloY3 = 208    //posicao y3 triangulo
+
+
+    function pulsaCoracao(){
+        if (raio == 30) {
+            aumentaCoracao = true
+            diminuiCoracao = false
+        }
+        if (raio == 35) {
+            aumentaCoracao = false
+            diminuiCoracao = true
+        }
+
+        if (aumentaCoracao) {
+            limpaTela()
+            desenhaCirculo(275,140,raio,"red");
+            desenhaCirculo(325,140,raio,"red");
+            desenhaTriangulo(trianguloX1,trianguloX2,trianguloY,trianguloX3,trianguloY3,"red")
+            trianguloX1--
+            trianguloX2++
+            trianguloY++
+            //trianguloX3++
+            trianguloY3++
+            raio++
+        }
+        if (diminuiCoracao) {
+            limpaTela()
+            desenhaCirculo(275,140,raio,"red");
+            desenhaCirculo(325,140,raio,"red");
+            desenhaTriangulo(trianguloX1,trianguloX2,trianguloY,trianguloX3,trianguloY3,"red")
+            trianguloX1++
+            trianguloX2--
+            trianguloY--
+            //trianguloX3++
+            trianguloY3--
+            raio--
+        }
+
+
+    }
+
+
+    setInterval(pulsaCoracao,35);
+    //limpaTela()
+    //desenhaCirculo(275,140,raio,"red");    
+    //desenhaCirculo(325,140,raio,"red");    
+    //desenhaTriangulo("red")
+
+
+
+</script>
